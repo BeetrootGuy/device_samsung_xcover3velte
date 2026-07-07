@@ -31,8 +31,8 @@ lib/libcsc.so
 lib/libexynosgscaler.so
 lib/libexynosscaler.so
 lib/libexynosv4l2.so
-vendor/lib/libOpenCv.so:lib/libOpenCv.so
-vendor/lib/libsomp.so:lib/libsomp.so
+lib/libOpenCv.so
+lib/libsomp.so
 
 # DRM
 vendor/lib/mediadrm/libdrmclearkeyplugin.so
@@ -80,8 +80,8 @@ app/mcRegistry/ffffffffd00000000000000000000004.tlbin
 app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
 app/mcRegistry/ffffffffd00000000000000000000016.tlbin
 app/mcRegistry/fffffffff0000000000000000000001e.tlbin
-vendor/lib/libMcClient.so:lib/libMcClient.so
-vendor/lib/libMcRegistry.so:lib/libMcRegistry.so
+lib/libMcClient.so
+lib/libMcRegistry.so
 
 # OMX
 lib/omx/libOMX.Exynos.AVC.Decoder.so
