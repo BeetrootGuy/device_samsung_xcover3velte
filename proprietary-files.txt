@@ -1,0 +1,153 @@
+# Adapted from android_device_samsung_j1xlte's proprietary-files.txt, and
+# verified against a real SM-G389F stock firmware extraction (paths for
+# Bluetooth firmware, libbt-vendor.so, libSEF.so, floating_feature.xml,
+# NFC firmware, and PLMN/ISP firmware presence/absence all confirmed).
+# Everything else is either confirmed shared across the exynos3475 family
+# (platform-level Mali/Exynos/OMX/radio/Mobicore blobs, not phone-model-
+# specific) or still explicitly flagged below as open/unconfirmed.
+#
+# One remaining item (SX9310 grip sensor library location) still needs
+# checking against the extracted vendor/lib and lib/hw contents - see
+# the "STILL OPEN" section at the bottom.
+
+#Audio
+# vendor/lib/libLifevibes_lvverx.so  # confirmed ABSENT via extraction run
+# vendor/lib/libLifevibes_lvvetx.so  # confirmed ABSENT via extraction run
+
+#Bluetooth
+bin/prepare_param.sh
+vendor/firmware/BCM4345C0_003.001.025.0147.0245.hcd
+lib/libbt-vendor.so
+etc/bluetooth/bt_stack.conf
+
+# Camera
+lib/hw/camera.exynos3.so:lib/hw/camera.exynos5.so
+lib/libcamera_metadata.so
+lib/libexynoscameraexternal.so
+lib/libseccameracore.so
+lib/libhwjpeg.so
+lib/libexynosutils.so
+lib/libcsc.so
+lib/libexynosgscaler.so
+lib/libexynosscaler.so
+lib/libexynosv4l2.so
+vendor/lib/libOpenCv.so:lib/libOpenCv.so
+vendor/lib/libsomp.so:lib/libsomp.so
+
+# DRM
+vendor/lib/mediadrm/libdrmclearkeyplugin.so
+vendor/lib/mediadrm/libwvdrmengine.so
+
+# GPS
+bin/gpsd
+lib/hw/gps.default.so
+etc/floating_feature.xml
+lib/libwrappergps.so
+
+# Graphics
+vendor/lib/egl/libGLES_mali.so
+lib/egl/egl.cfg
+lib/egl/libGLES_android.so
+
+# Media
+lib/libSEF.so
+# vendor/firmware/fimc_is_lib_isp.bin  # confirmed ABSENT after exhaustive
+# check of stock vendor/firmware/ (only sec_s3fwrn7_firmware.bin, mfc_fw.bin,
+# es305_fw.bin, es305_fw_bypass.bin present). Likely genuinely unused by
+# this sensor/ISP configuration (no companion chip, basic 4EC/SR200
+# sensors) despite the driver referencing the filename unconditionally.
+vendor/firmware/mfc_fw.bin
+
+# Mobicore
+app/FFFFFFFF000000000000000000000001.drbin
+app/mcRegistry/00060308060501020000000000000000.tlbin
+app/mcRegistry/07010000000000000000000000000000.tlbin
+app/mcRegistry/07060000000000000000000000000000.tlbin
+app/mcRegistry/08130000000000000000000000000000.tlbin
+app/mcRegistry/ffffffff000000000000000000000004.tlbin
+app/mcRegistry/ffffffff000000000000000000000005.tlbin
+app/mcRegistry/ffffffff00000000000000000000000a.tlbin
+app/mcRegistry/ffffffff00000000000000000000000c.tlbin
+app/mcRegistry/ffffffff00000000000000000000000d.tlbin
+app/mcRegistry/ffffffff00000000000000000000000f.tlbin
+app/mcRegistry/ffffffff000000000000000000000012.tlbin
+app/mcRegistry/ffffffff000000000000000000000013.tlbin
+app/mcRegistry/ffffffff000000000000000000000016.tlbin
+app/mcRegistry/ffffffff000000000000000000000017.tlbin
+app/mcRegistry/ffffffff000000000000000000000019.tlbin
+app/mcRegistry/ffffffff000000000000000000000041.tlbin
+app/mcRegistry/ffffffffd00000000000000000000004.tlbin
+app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+app/mcRegistry/ffffffffd00000000000000000000016.tlbin
+app/mcRegistry/fffffffff0000000000000000000001e.tlbin
+vendor/lib/libMcClient.so:lib/libMcClient.so
+vendor/lib/libMcRegistry.so:lib/libMcRegistry.so
+
+# OMX
+lib/omx/libOMX.Exynos.AVC.Decoder.so
+lib/omx/libOMX.Exynos.AVC.Encoder.so
+lib/omx/libOMX.Exynos.HEVC.Decoder.so
+lib/omx/libOMX.Exynos.MPEG4.Encoder.so
+lib/omx/libOMX.Exynos.MPEG4.Decoder.so
+lib/omx/libOMX.Exynos.VP8.Decoder.so
+lib/omx/libOMX.Exynos.VP8.Encoder.so
+lib/omx/libOMX.Exynos.WMV.Decoder.so 
+
+# Radio
+bin/rild
+lib/libril.so
+lib/libsec-ril.so
+lib/libsecril-client.so
+lib/libaudio-ril.so
+lib/libreference-ril.so
+lib/librilutils.so
+# lib/libsec-ril-dsds.so  # confirmed not needed - single-SIM SM-G389F unit
+lib/libsecnativefeature.so
+
+# Sensors
+lib/hw/sensors.universal3475.so
+
+# Surface Composer
+lib/hw/gralloc.exynos3.so:lib/hw/gralloc.exynos5.so
+
+# Wifi
+# etc/plmn_delta.bin  # confirmed absent on this firmware variant - not needed
+etc/plmn_se13.bin
+etc/srm.bin
+etc/wifi/bcmdhd_apsta.bin
+etc/wifi/bcmdhd_mfg.bin
+etc/wifi/bcmdhd_sta.bin
+etc/wifi/nvram_mfg.txt
+etc/wifi/nvram_net.txt
+
+# Firmware
+# vendor/firmware/fimc_is_fd.bin  # confirmed ABSENT, see note above
+
+# NOTE: es305_fw.bin / es305_fw_bypass.bin (Audience ES705 voice processor
+# firmware) - CONFIRMED PRESENT in stock vendor/firmware/ despite the
+# xcover3velte kernel defconfig having no SND_SOC_ES* codec enabled and no
+# matching dts node. Carried over for fidelity to stock (harmless if
+# genuinely unused - the driver that would read it isn't built), but this
+# is a real discrepancy worth being aware of: either the codec chip is
+# physically present but simply not wired up in this kernel config/dts, or
+# these blobs are dead weight shared from a common vendor image across
+# multiple exynos3475 SKUs. Not re-enabling the kernel config based on this
+# alone without further evidence the chip is actually used on this device.
+vendor/firmware/es305_fw_bypass.bin
+vendor/firmware/es305_fw.bin
+
+# Samsung in-house NFC controller firmware (S3FWRN7) - confirmed present,
+# corresponds to the "sec-nfc" driver / "N5" product code already enabled
+# in the kernel defconfig (CONFIG_SEC_NFC / SEC_NFC_PRODUCT_N5)
+vendor/firmware/sec_s3fwrn7_firmware.bin
+
+# ============================================================
+# STILL OPEN
+# ============================================================
+
+# Grip sensor (SX9310 confirmed present in xcover3velte_eur_open_01.dts)
+# Not yet confirmed whether it's folded into the existing
+# lib/hw/sensors.universal3475.so blob (most likely, matching how
+# j1xlte's own K2HH/GP2A/AK09916C sensors all live in that one file)
+# or has a separate library - check for any other sensor-related .so
+# files in the extracted vendor/lib or lib/hw directories.

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <!--
+      Device tree: xcover3velte doesn't exist as a public repo yet.
+      This assumes you've pushed the device/samsung/xcover3velte tree
+      we've built (BoardConfig.mk, device.mk, init/,
+      proprietary-files.txt, extract-files.sh) to your own GitHub
+      account, following the same naming convention as the Exynos3475
+      org for consistency. Replace YOUR_GITHUB_USERNAME below with your
+      actual account.
+
+      If you'd rather not create a repo yet, delete this <project> line
+      entirely, run repo sync without it, then manually copy the
+      device/samsung/xcover3velte folder directly into the synced tree
+      at that same path. Fine for local builds; you only need a real
+      git repo + manifest entry for reproducible syncing across
+      machines or if you plan to share/upstream the port later.
+    -->
+    <project name="YOUR_GITHUB_USERNAME/android_device_samsung_xcover3velte" remote="github" revision="cm-14.1" path="device/samsung/xcover3velte"/>
+
+    <!--
+      Kernel Source - confirmed correct branch: cm-14.1-rebase (matches
+      what the upstream j1xlte.xml manifest uses, and confirmed to
+      contain the xcover3velte dts files plus correct camera driver
+      code - no fork/patch needed here, our only kernel-side addition
+      is the defconfig, which lives in the device tree above and gets
+      picked up via TARGET_KERNEL_CONFIG in BoardConfig.mk, not synced
+      separately).
+    -->
+    <project name="Exynos3475/android_kernel_samsung_exynos3475" remote="github" revision="cm-14.1-rebase" path="kernel/samsung/exynos3475"/>
+
+    <!--
+      Proprietary Blobs - NOT fetched via repo/manifest. setup-makefiles.sh
+      generates vendor/samsung/xcover3velte/ directly in your synced tree
+      once you run extract-files.sh against your stock firmware
+      extraction. No <project> entry is needed or possible here, since
+      xcover3velte isn't part of the shared community vendor/samsung
+      multi-device repo (which only covers j1xlte/j2lte/o5prolte/
+      on5ltetmo).
+    -->
+
+    <!-- Hardware trees - shared across the whole exynos3475 family,
+         same as j1xlte/o5prolte use, no changes needed -->
+    <project name="Exynos3475/android_hardware_samsung_slsi_exynos3475" path="hardware/samsung_slsi/exynos3475" remote="github" revision="cm-14.1" />
+    <project name="Exynos3475/android_hardware_samsung_slsi_exynos" path="hardware/samsung_slsi/exynos" remote="github" revision="cm-14.1" />
+    <project name="LineageOS/android_hardware_samsung_slsi_exynos5" path="hardware/samsung_slsi/exynos5" remote="github" revision="lineage-16.0" />
+    <project name="Exynos3475/android_hardware_samsung_slsi_openmax" path="hardware/samsung_slsi/openmax" remote="github" revision="cm-14.1" />
+    <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="github" revision="cm-14.1" />
+    <project name="LineageOS/android_external_stlport" path="external/stlport" remote="github" revision="cm-14.1" />
+</manifest>
