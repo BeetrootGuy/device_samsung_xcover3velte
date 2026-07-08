@@ -1,0 +1,63 @@
+# Copyright (c) 2013, The Linux Foundation. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#     * Neither the name of The Linux Foundation nor the names of its
+#       contributors may be used to endorse or promote products derived
+#       from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# xcover3velte gpio-keys mapping.
+#
+# Confirmed directly from this device's own dts (gpio_keys node in
+# exynos3475-xcover3ve_common.dtsi) - NOT copied from j1xlte's file,
+# since this device's button set genuinely differs: xcover3velte has no
+# capacitive touchkey controller at all (no sec_touchkey.kl needed here,
+# unlike j1xlte), and instead handles Back/Recent as real physical
+# gpio-keys, plus one extra hardware button j1xlte doesn't have.
+#
+# linux,code 116 (KEY_POWER) is intentionally not listed here - handled
+# by the input framework's built-in default power key behavior, same as
+# on j1xlte.
+
+key 114   VOLUME_DOWN
+key 115   VOLUME_UP
+key 158   BACK
+key 172   HOME
+key 254   APP_SWITCH
+
+# linux,code 195 (KEY_MULTIKEY) - this is Samsung's "XCover Key" / Active
+# Key, a physical button marketed on the Xcover line specifically as a
+# user-programmable shortcut (documented default uses on later Xcover
+# models: camera shutter, flashlight, walkie-talkie/PTT, voice assistant
+# - it's meant to be reconfigurable via a Settings UI backed by Samsung's
+# own closed-source framework, which isn't part of the GPL source we have
+# for this device, so its "correct" original default can't be determined
+# from source alone).
+#
+# ASSIST is used here as a reasonable, safe placeholder (invokes the
+# device's voice/digital assistant) - change this to whatever's more
+# useful for you. Common alternatives:
+#   key 195   CAMERA        # quick camera launch
+#   key 195   VOICE_ASSIST  # same idea as ASSIST, distinct AOSP keycode
+#   key 195   FUNCTION       # inert; only fires as a raw event apps could
+#                             # bind to individually, does nothing by default
+key 195   ASSIST
