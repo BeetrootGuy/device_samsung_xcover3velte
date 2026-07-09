@@ -29,8 +29,8 @@ PRODUCT_COPY_FILES += \
     vendor/samsung/xcover3velte/proprietary/lib/libexynosgscaler.so:system/lib/libexynosgscaler.so \
     vendor/samsung/xcover3velte/proprietary/lib/libexynosscaler.so:system/lib/libexynosscaler.so \
     vendor/samsung/xcover3velte/proprietary/lib/libexynosv4l2.so:system/lib/libexynosv4l2.so \
-    vendor/samsung/xcover3velte/proprietary/vendor/lib/libOpenCv.so:system/lib/libOpenCv.so \
-    vendor/samsung/xcover3velte/proprietary/vendor/lib/libsomp.so:system/lib/libsomp.so \
+    vendor/samsung/xcover3velte/proprietary/lib/libOpenCv.so:system/lib/libOpenCv.so \
+    vendor/samsung/xcover3velte/proprietary/lib/libsomp.so:system/lib/libsomp.so \
     vendor/samsung/xcover3velte/proprietary/vendor/lib/mediadrm/libdrmclearkeyplugin.so:system/vendor/lib/mediadrm/libdrmclearkeyplugin.so \
     vendor/samsung/xcover3velte/proprietary/vendor/lib/mediadrm/libwvdrmengine.so:system/vendor/lib/mediadrm/libwvdrmengine.so \
     vendor/samsung/xcover3velte/proprietary/bin/gpsd:system/bin/gpsd \
@@ -63,8 +63,8 @@ PRODUCT_COPY_FILES += \
     vendor/samsung/xcover3velte/proprietary/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin:system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin \
     vendor/samsung/xcover3velte/proprietary/app/mcRegistry/ffffffffd00000000000000000000016.tlbin:system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin \
     vendor/samsung/xcover3velte/proprietary/app/mcRegistry/fffffffff0000000000000000000001e.tlbin:system/app/mcRegistry/fffffffff0000000000000000000001e.tlbin \
-    vendor/samsung/xcover3velte/proprietary/vendor/lib/libMcClient.so:system/lib/libMcClient.so \
-    vendor/samsung/xcover3velte/proprietary/vendor/lib/libMcRegistry.so:system/lib/libMcRegistry.so \
+    vendor/samsung/xcover3velte/proprietary/lib/libMcClient.so:system/lib/libMcClient.so \
+    vendor/samsung/xcover3velte/proprietary/lib/libMcRegistry.so:system/lib/libMcRegistry.so \
     vendor/samsung/xcover3velte/proprietary/lib/omx/libOMX.Exynos.AVC.Decoder.so:system/lib/omx/libOMX.Exynos.AVC.Decoder.so \
     vendor/samsung/xcover3velte/proprietary/lib/omx/libOMX.Exynos.AVC.Encoder.so:system/lib/omx/libOMX.Exynos.AVC.Encoder.so \
     vendor/samsung/xcover3velte/proprietary/lib/omx/libOMX.Exynos.HEVC.Decoder.so:system/lib/omx/libOMX.Exynos.HEVC.Decoder.so \
