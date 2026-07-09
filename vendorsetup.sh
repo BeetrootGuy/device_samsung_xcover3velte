@@ -1,0 +1,3 @@
+add_lunch_combo lineage_xcover3velte-eng
+add_lunch_combo lineage_xcover3velte-user
+add_lunch_combo lineage_xcover3velte-userdebug
