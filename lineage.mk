@@ -37,5 +37,4 @@ PRODUCT_GMS_CLIENTID_BASE := android-samsung
 # build.prop independently confirm the same G389FXXU1ARJ1 build string).
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_FINGERPRINT="samsung/xcover3veltexx/xcover3velte:6.0.1/MMB29K/G389FXXU1ARJ1:user/test-keys" \
-    PRIVATE_BUILD_DESC="xcover3veltexx-user 6.0.1 MMB29K G389FXXU1ARJ1 test-k
-    eys"
+    PRIVATE_BUILD_DESC="xcover3veltexx-user 6.0.1 MMB29K G389FXXU1ARJ1 test-keys"
